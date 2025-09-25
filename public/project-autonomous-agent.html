@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autonomous AI Agent - Muhammed Fahim</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root { --bg-primary:#0a0a0a; --bg-secondary:#111111; --accent:#4f46e5; --accent-hover:#6366f1; --text-primary:#f3f4f6; --text-secondary:#d1d5db; --text-tertiary:#9ca3af; }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    body { background-color:var(--bg-primary); color:var(--text-primary); line-height:1.7; overflow-x:hidden; }
+    .container { max-width:1200px; margin:0 auto; padding:0 2rem; }
+    nav { padding:1.5rem 0; position:fixed; width:100%; top:0; z-index:100; background-color:rgba(10,10,10,0.9); backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,0.05); transition:all .3s ease; }
+    nav.scrolled { padding:1rem 0; box-shadow:0 10px 30px -10px rgba(0,0,0,.3); }
+    .nav-content { display:flex; justify-content:space-between; align-items:center; }
+    .logo { font-size:1.5rem; font-weight:700; color:var(--text-primary); text-decoration:none; }
+    .logo span { color:var(--accent); }
+    .project-header { padding-top:120px; padding-bottom:60px; background:radial-gradient(circle at top right, rgba(79,70,229,.15) 0%, transparent 70%); }
+    .project-title { font-size:3rem; margin-bottom:1.5rem; }
+    .project-subtitle { font-size:1.5rem; color:var(--text-secondary); margin-bottom:2rem; }
+    .project-meta { display:flex; gap:2rem; margin-bottom:1rem; flex-wrap:wrap; align-items:center; }
+    .meta-item { display:flex; flex-direction:column; }
+    .meta-label { font-size:.9rem; color:var(--text-tertiary); margin-bottom:.5rem; }
+    .meta-value { font-size:1.1rem; }
+    .chip { padding:.25rem .75rem; background-color:rgba(79,70,229,.15); border:1px solid rgba(79,70,229,.35); color:var(--text-secondary); border-radius:9999px; font-size:.8rem; }
+    .chips { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.5rem; }
+    .project-image { width:100%; border-radius:1rem; overflow:hidden; margin-bottom:3rem; box-shadow:0 20px 40px -20px rgba(0,0,0,.5); }
+    .project-image img { width:100%; height:auto; display:block; }
+    .project-content { margin-bottom:4rem; }
+    .project-section { margin-bottom:3rem; }
+    .section-title { font-size:1.75rem; margin-bottom:1.0rem; position:relative; }
+    .section-title::after { content:''; position:absolute; left:0; bottom:-.5rem; width:50px; height:3px; background-color:var(--accent); border-radius:1.5px; }
+    .project-features { margin-left:1.5rem; margin-bottom:1rem; }
+    .project-features li { margin-bottom:.75rem; color:var(--text-secondary); }
+    .code-block { background-color:var(--bg-secondary); padding:1rem; border-radius:.5rem; border:1px solid rgba(255,255,255,.06); font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size:.9rem; line-height:1.5; overflow:auto; color:var(--text-secondary); }
+    .back-button { margin:2rem 0 4rem; }
+    .btn { display:inline-block; background-color:var(--accent); color:#fff; padding:.75rem 1.5rem; border-radius:.375rem; text-decoration:none; font-weight:500; transition:all .3s ease; border:none; cursor:pointer; }
+    .btn:hover { background-color:var(--accent-hover); transform:translateY(-2px); box-shadow:0 10px 25px -5px rgba(79,70,229,.4); }
+    footer { background-color:var(--bg-secondary); padding:3rem 0; border-top:1px solid rgba(255,255,255,0.05); }
+    .footer-content { display:flex; justify-content:space-between; align-items:center; }
+    .copyright { color:var(--text-tertiary); font-size:.9rem; }
+    @media (max-width:768px){ .project-title{font-size:2.5rem;} .project-meta{flex-direction:column; gap:1rem;} .footer-content{flex-direction:column; gap:1.5rem; text-align:center;} }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="container nav-content">
+      <a href="/" class="logo">Muhammed<span>Fahim</span></a>
+    </div>
+  </nav>
+
+  <header class="project-header">
+    <div class="container">
+      <h1 class="project-title">Autonomous AI Agent</h1>
+      <p class="project-subtitle">Multi‑agent system (LangGraph) with Sales, RAG‑QA and Announcer agents; DB tools and PA speaker integration.</p>
+      <div class="project-meta">
+        <div class="meta-item"><span class="meta-label">Project Type</span><span class="meta-value">Agentic AI</span></div>
+        <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value">In Development</span></div>
+        <div class="chips">
+          <span class="chip">LangGraph</span>
+          <span class="chip">DB Tools</span>
+          <span class="chip">RAG Agent</span>
+          <span class="chip">PA Speaker</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="project-image">
+      <img src="/images/agentic.jpg" alt="Autonomous AI Agent" width="1200" height="600">
+    </div>
+
+    <div class="project-content">
+      <section class="project-section">
+        <h2 class="section-title">Agent Roles</h2>
+        <ul class="project-features">
+          <li><strong>SalesAgent:</strong> queries DB (SQL tool), evaluates goals, updates CRM.</li>
+          <li><strong>RAGAgent:</strong> answers from KB with citations.</li>
+          <li><strong>AnnouncerAgent:</strong> triggers PA speaker when targets met.</li>
+          <li><strong>Critic/Guard:</strong> reviews actions; stop/adjust policy.</li>
+        </ul>
+      </section>
+
+      <section class="project-section">
+        <h2 class="section-title">Agent Graph</h2>
+        <pre class="code-block">[Trigger/User]
+   -> Orchestrator (LangGraph)
+      |-- SalesAgent --(SQL Tool)--> DB
+      |-- RAGAgent ----(Retrieve)--> KB/Chroma
+      |-- AnnouncerAgent ----------> PA Speaker
+      '-- Critic/Guard -----------> approve/adjust/stop</pre>
+      </section>
+
+      <section class="project-section">
+        <h2 class="section-title">Challenges & Trade‑offs</h2>
+        <ul class="project-features">
+          <li><strong>Accuracy (small LLaMA):</strong> route by confidence; retrieval‑first; escalate to larger models selectively.</li>
+          <li><strong>Latency:</strong> batch/tool‑prefetch; result caching; non‑blocking announcements.</li>
+          <li><strong>Data:</strong> custom dev DB for prototyping; move to prod sources later.</li>
+        </ul>
+      </section>
+
+      <section class="project-section">
+        <h2 class="section-title">Status & Next</h2>
+        <ul class="project-features">
+          <li>Core agent loop running; integrations working in dev.</li>
+          <li>Next: confidence routing; evaluation harness; production data sources.</li>
+        </ul>
+      </section>
+
+      <div class="back-button">
+        <a href="/#projects" class="btn">← Back to Projects</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <a href="/" class="logo">Muhammed<span>Fahim</span></a>
+      <div class="copyright">&copy; 2025 Muhammed Fahim. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', function(){
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
+    });
+  </script>
+</body>
+</html>

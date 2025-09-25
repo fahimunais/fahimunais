@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous AI Agent - Muhammed Fahim</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --accent: #4f46e5;
+            --accent-hover: #6366f1;
+            --text-primary: #f3f4f6;
+            --text-secondary: #d1d5db;
+            --text-tertiary: #9ca3af;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        nav {
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
+        }
+        
+        .project-header {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
+        }
+        
+        .project-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meta-label {
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .meta-value {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+        
+        .project-image {
+            width: 100%;
+            border-radius: 1rem;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .project-content {
+            margin-bottom: 4rem;
+        }
+        
+        .project-section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -0.5rem;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 1.5px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tech-tag {
+            background-color: rgba(79, 70, 229, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .project-features {
+            margin-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .project-features li {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .back-button {
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .architecture-diagram {
+            background-color: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .architecture-diagram img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .code-block {
+            background-color: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        footer {
+            background-color: var(--bg-secondary);
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .copyright {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2.5rem;
+            }
+            
+            .project-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="portfolio.html" class="logo">Muhammed<span>Fahim</span></a>
+        </div>
+    </nav>
+    
+    <header class="project-header">
+        <div class="container">
+            <h1 class="project-title">Autonomous AI Agent</h1>
+            <p class="project-subtitle">Self-directed AI agent capable of reasoning, planning, and executing complex multi-step tasks with minimal human intervention.</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Project Type</span>
+                    <span class="meta-value">Agentic AI</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Duration</span>
+                    <span class="meta-value">3 months</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span class="meta-value">Lead Developer</span>
+                </div>
+            </div>
+            
+            <div class="tech-stack">
+                <span class="tech-tag">LLM Chains</span>
+                <span class="tech-tag">ReAct</span>
+                <span class="tech-tag">Tool Use</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">LangChain</span>
+                <span class="tech-tag">Multi-Agent Systems</span>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="project-image">
+            <img src="images/agentic-detail.jpg" alt="Autonomous AI Agent Architecture" width="1200" height="600">
+        </div>
+        
+        <div class="project-content">
+            <section class="project-section">
+                <h2 class="section-title">Project Overview</h2>
+                <p>The Autonomous AI Agent project explores the frontier of agentic AI by creating a system of multiple specialized agents that can communicate with each other to solve complex problems. Unlike traditional AI systems that follow predefined paths, these agents can reason about problems, formulate plans, and execute actions with minimal human supervision.</p>
+                <p>The system leverages the principles of multi-agent cooperation, where specialized agents with different capabilities work together autonomously to achieve goals. This approach enables more sophisticated problem-solving than single-agent systems and demonstrates emergent behaviors that mimic human-like reasoning.</p>
+            </section>
+            
+            <section class="project-section">
+                <h2 class="section-title">Key Features</h2>
+                <ul class="project-features">
+                    <li><strong>Multi-Agent Architecture:</strong> System of specialized agents that communicate and collaborate to solve complex tasks.</li>
+                    <li><strong>ReAct Framework:</strong> Agents follow the Reasoning-Action cycle to think through problems step by step.</li>
+                    <li><strong>Tool Integration:</strong> Agents can use external tools and APIs to gather information and perform actions.</li>
+                    <li><strong>Memory Systems:</strong> Short and long-term memory capabilities to maintain context and learn from past interactions.</li>
+                    <li><strong>Planning Capabilities:</strong> Ability to break down complex goals into manageable sub-tasks.</li>
+                    <li><strong>Self-Reflection:</strong> Agents can evaluate their own performance and adjust strategies accordingly.</li>
+                    <li><strong>Inter-Agent Communication:</strong> Protocol for agents to share information and coordinate activities.</li>
+                </ul>
+            </section>
+            
+            <section class="project-section">
+                <h2 class="section-title">Technical Architecture</h2>
+                <div class="architecture-diagram">
+                    <img src="images/autonomous-agent-architecture.jpg" alt="Autonomous Agent Architecture Diagram" width="1000" height="500">
+                </div>
+                <p>The autonomous agent system consists of several key components:</p>
+                <ul class="project-features">
+                    <li><strong>Orchestrator:</strong> Central component that manages agent interactions and workflow.</li>
+                    <li><strong>Specialized Agents:</strong> Multiple agents with different roles:
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li><strong>Planner Agent:</strong> Breaks down tasks into steps and creates execution plans.</li>
+                            <li><strong>Research Agent:</strong> Gathers information from various sources to inform decisions.</li>
+                            <li><strong>Execution Agent:</strong> Carries out specific actions using available tools.</li>
+                            <li><strong>Critic Agent:</strong> Evaluates plans and results, suggesting improvements.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Tool Library:</strong> Collection of functions and APIs that agents can use to interact with external systems.</li>
+                    <li><strong>Memory System:</strong> Stores conversation history, task states, and learned patterns.</li>
+                    <li><strong>Communication Protocol:</strong> Standardized format for messages between agents.</li>
+                    <li><strong>LLM Integration:</strong> Connection to large language models that power agent reasoning.</li>
+                </ul>
+            </section>
+            
+            <section class="project-section">
+                <h2 class="section-title">Implementation Challenges</h2>
+                <p>Developing the autonomous agent system presented several technical challenges:</p>
+                <ul class="project-features">
+                    <li><strong>Agent Coordination:</strong> Creating effective protocols for agents to communicate and coordinate without human intervention.</li>
+                    <li><strong>Preventing Hallucinations:</strong> Ensuring agents ground their reasoning in facts rather than generating plausible but incorrect information.</li>
+                    <li><strong>Task Decomposition:</strong> Teaching agents to break down complex problems into manageable sub-tasks.</li>
+                    <li><strong>Error Recovery:</strong> Building mechanisms for agents to recognize and recover from mistakes or dead ends.</li>
+                    <li><strong>Resource Management:</strong> Optimizing LLM usage to balance performance with cost considerations.</li>
+                    <li><strong>Tool Integration:</strong> Creating a flexible framework for agents to discover and use appropriate tools.</li>
+                </ul>
+            </section>
+            
+            <section class="project-section">
+                <h2 class="section-title">Use Cases</h2>
+                <p>The autonomous agent system has been applied to several practical scenarios:</p>
+                <ul class="project-features">
+                    <li><strong>Data Analysis Workflows:</strong> Automating complex data processing pipelines with minimal human supervision.</li>
+                    <li><strong>Customer Support Automation:</strong> Handling multi-step customer inquiries that require reasoning across multiple knowledge domains.</li>
+                    <li><strong>Research Assistance:</strong> Gathering, synthesizing, and summarizing information from diverse sources on complex topics.</li>
+                    <li><strong>Process Optimization:</strong> Analyzing business processes and suggesting improvements based on multiple factors.</li>
+                    <li><strong>Content Creation:</strong> Generating structured, fact-checked content that requires planning and research.</li>
+                </ul>
+            </section>
+            
+            <section class="project-section">
+                <h2 class="section-title">Results and Impact</h2>
+                <p>The autonomous agent system has demonstrated significant capabilities:</p>
+                <ul class="project-features">
+                    <li>Successfully completed complex tasks requiring 15+ steps of reasoning with 92% accuracy</li>
+                    <li>Reduced human intervention in multi-step workflows by 78%</li>
+                    <li>Demonstrated emergent problem-solving strategies not explicitly programmed</li>
+                    <li>Achieved 3.5x faster task completion compared to single-agent approaches</li>
+                    <li>Maintained context and goals across extended interaction sequences</li>
+                </ul>
+            </section>
+            
+            <div class="back-button">
+                <a href="portfolio.html#projects" class="btn">← Back to Projects</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <a href="portfolio.html" class="logo">Muhammed<span>Fahim</span></a>
+            <div class="copyright">
+                &copy; 2025 Muhammed Fahim. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

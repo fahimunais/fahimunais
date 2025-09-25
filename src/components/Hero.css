@@ -1,0 +1,184 @@
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%);
+  top: -250px;
+  left: -250px;
+}
+
+.hero-content {
+  max-width: 700px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 .highlight {
+  color: var(--accent);
+  position: relative;
+  display: inline-block;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: var(--accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.btn-outline:hover {
+  background-color: rgba(79, 70, 229, 0.1);
+  box-shadow: none;
+}
+
+.btn-download {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-download:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+.vp-proximity {
+  --vp-x: 50%;
+  --vp-y: 35%;
+  --vp-strength: 0;
+  position: relative;
+  isolation: isolate;
+}
+
+.vp-proximity::before {
+  content: '';
+  position: absolute;
+  inset: -80px; /* bleed for smooth fade */
+  pointer-events: none;
+  border-radius: 32px;
+  background:
+    radial-gradient(
+      240px 180px at var(--vp-x) var(--vp-y),
+      rgba(99, 102, 241, calc(0.40 * var(--vp-strength))) 0%,
+      rgba(56, 189, 248, calc(0.35 * var(--vp-strength))) 25%,
+      rgba(34, 197, 94, calc(0.25 * var(--vp-strength))) 45%,
+      rgba(79, 70, 229, 0) 70%
+    );
+  filter: blur(24px) saturate(1.05);
+  z-index: -1;
+  transition: background 120ms linear;
+}
+
+/* A soft light sweep following the cursor */
+.vp-proximity::after {
+  content: '';
+  position: absolute;
+  inset: -60px;
+  pointer-events: none;
+  border-radius: 32px;
+  background:
+    radial-gradient(
+      180px 140px at var(--vp-x) var(--vp-y),
+      rgba(255,255,255, calc(0.12 * var(--vp-strength))) 0%,
+      rgba(255,255,255, 0) 60%
+    );
+  mix-blend-mode: overlay;
+  filter: blur(18px);
+  z-index: -1;
+  transition: background 120ms linear;
+}
+
+.vp-heading {
+  font: inherit;
+  color: inherit;
+}
+
+.hero-title {
+  position: relative;
+}
+
+.hero-name-overlay {
+  position: absolute;
+  pointer-events: none;
+  color: var(--accent);
+  left: 0;
+  top: 0;
+  line-height: 1.2;
+  mix-blend-mode: normal;
+  /* Only highlight the name segment; align text exactly */
+}
+
+/* Ensure overlay text copies the same content metrics */
+.hero-title .hero-name-overlay {
+  font: inherit;
+}
+
+.hero-name {
+  color: var(--accent);
+}
+
+@media (max-width: 992px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding-top: 120px;
+  }
+  
+  .btn {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
